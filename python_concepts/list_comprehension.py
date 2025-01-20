@@ -1,59 +1,40 @@
-# LIST COMPREHENSIONS
-# List comprehensions provide a concise way to create lists based on existing lists/iterables.
-# They combine a for loop and list creation into a single line of readable code.
+# List Comprehension
 
-# Setting up example data:
-import pandas as pd
-data = {
-    'Products': [
-        'iPhone 13',
-        'Samsung TV',
-        'Apple Watch',
-        'Sony Headphones',
-        'iPad Pro'
-    ],
-    'Prices': [799, 1299, 399, 249, 999]
-}
-df = pd.DataFrame(data)
+# A quick way to work with lists by creating pythonic code within the list itself
 
-# Traditional way to create a list of Apple products:
-apple_products = []
-for product in df['Products']:
-    if 'Apple' in product or 'iPhone' in product or 'iPad' in product:
-        apple_products.append(product)
-print("Traditional way:", apple_products)
+# Example 1
 
-# Same thing using a list comprehension:
-apple_products = [product for product in df['Products'] 
-                 if 'Apple' in product or 'iPhone' in product or 'iPad' in product]
-print("List comprehension:", apple_products)
+squares = []
+for x in range(10):
+    squares.append(x**2)
+    # This returns each square value of x, a value between 1 and 10
 
-###########
-# Working with numbers:
-# Create a list of squared numbers for prices under 500
-# Traditional way:
-squared_prices = []
-for price in df['Prices']:
-    if price < 500:
-        squared_prices.append(price ** 2)
-print("Traditional squared prices:", squared_prices)
+# Instead with list comprehension we can write it much easier:
 
-# List comprehension way:
-squared_prices = [price ** 2 for price in df['Prices'] if price < 500]
-print("List comprehension squared prices:", squared_prices)
+squares = [x**2 for x in range(10)]
+print(squares)
 
-###########
-# Nested list comprehension example:
-# Create a matrix of multiplication table
-size = 3
-multiplication_table = [[i * j for j in range(1, size + 1)] for i in range(1, size + 1)]
-print("\nMultiplication table:")
-for row in multiplication_table:
-    print(row)
+# This combines the for loop with the expression within the loop.
 
-###########
-# Combining with dictionary comprehension:
-# Create a dictionary of product: price for Apple products
-apple_prices = {product: price for product, price in zip(df['Products'], df['Prices'])
-                if 'Apple' in product or 'iPhone' in product or 'iPad' in product}
-print("\nApple product prices:", apple_prices)
+#####
+# Example 2: Given a list of strings, evaluate if it has the vowel "a" in it, and if so, add it to the new list
+
+# without comprehension:
+fruits = ['apple','banana','cherry','kiwi','mango']
+new_list = []
+
+for x in fruits:
+    if "a" in x:
+        new_list.append(x)
+
+print(new_list)
+
+# with list comprehension:
+
+new_list = [x for x in fruits if "a" in x]
+# [x : give me the value "apple"
+# for x in fruits: loop to iterate over
+# if "a" in x] : conditional to evaluate
+
+# or as w3 schools says it:
+# newlist = [expression for item in iterable if condition == True]
