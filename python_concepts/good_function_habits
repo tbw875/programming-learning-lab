@@ -1,0 +1,37 @@
+# Bad example
+  # Non-descript name
+  # No doc string
+  # No type specification
+  # No type validation or error handling
+
+def vowels(text):
+  return sum(char.lower() in 'aeiou' for char in text)
+
+def count_vowels(text: str) -> int:
+  """
+  Counts the number of vowels within a string.
+
+  :params text: the string to count vowels from.
+  :return: the total vowel count for the string
+  """
+
+  # Error Handling
+  if not isinstance(text, str):
+    raise TypeError(f'Please use only strings. {type(text)} is not a valid type.')
+
+  # Explicit readability
+  vowel_count = 0
+  for char in text:
+    if char in 'aeiouAEIOU':
+      vowel_count += 1
+
+  return vowel_count
+
+
+def main() -> None:
+  text: str = 'Pinball is awesome'
+  print(vowels)
+  print(count_vowels)
+
+if __name__ = __main__:
+  main()
